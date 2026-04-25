@@ -23,8 +23,9 @@ const contacts = {
   phoneHref: 'tel:+79178066592',
   email: 'perez_lenz@mail.ru',
   emailHref: 'mailto:perez_lenz@mail.ru',
-  whatsapp: 'https://wa.me/89178066592?text=Hello%21%20I%27d%20like%20to%20place%20an%20order.',
-  instagram: 'https://instagram.com/perechneva_designer',
+  whatsapp:
+    'https://api.whatsapp.com/send/?phone=89178066592&text=Hello%21+I%27d+like+to+place+an+order.&type=phone_number&app_absent=0',
+  instagram: 'https://www.instagram.com/perechneva_designer',
   vk: 'https://vk.com/perechneva_designer',
   telegram: 'https://t.me/perechneva_designer',
 };
@@ -36,10 +37,10 @@ const serviceImages = [
 ];
 
 const reviewImages = [
-  'https://static.tildacdn.pub/tild6637-3634-4264-a162-383665656339/Slice8Copy9.png',
-  'https://static.tildacdn.pub/tild3832-3339-4639-a636-643438376432/Slice8Copy10.png',
-  'https://static.tildacdn.pub/tild3065-3563-4536-b132-643664663263/Slice8Copy17.png',
-  'https://static.tildacdn.pub/tild3162-3965-4431-a538-643462616534/interior_design_icon_4.png',
+  'https://static.tildacdn.pub/tild3136-6363-4164-a136-313337316633/__.png',
+  'https://static.tildacdn.pub/tild3038-3539-4537-a639-343463383761/_1.png',
+  'https://static.tildacdn.pub/tild3238-6163-4261-b362-356433326235/_2.png',
+  'https://static.tildacdn.pub/tild6535-6635-4866-b935-313930373861/_3.png',
 ];
 
 const portfolioProjects = [
@@ -298,6 +299,9 @@ function Header() {
           </a>
           <a href="#process" className="transition hover:text-[#2f5d50]">
             Этапы
+          </a>
+          <a href="#reviews" className="transition hover:text-[#2f5d50]">
+            Отзывы
           </a>
           <a href="#contacts" className="transition hover:text-[#2f5d50]">
             Контакты
@@ -579,7 +583,7 @@ function ProcessSection() {
 
 function ReviewsSection() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20">
+    <section id="reviews" className="mx-auto max-w-7xl px-6 py-20">
       <Reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <div className="max-w-2xl">
           <SectionLabel>Отзывы</SectionLabel>
@@ -588,14 +592,24 @@ function ReviewsSection() {
           </h2>
         </div>
         <p className="max-w-md text-base leading-7 text-[#52615c]">
-          Скриншоты отзывов сохранены из исходного портфолио и вынесены в отдельную галерею.
+          Все отзывы перенесены с исходного сайта Tilda. Нажмите на любой скриншот, чтобы открыть его крупнее.
         </p>
       </Reveal>
-      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid gap-6 md:grid-cols-2">
         {reviewImages.map((image, index) => (
           <Reveal key={image} delay={`${0.1 + index * 0.08}s`}>
-            <a href={image} target="_blank" rel="noreferrer" className="block rounded-[28px] border border-[#14251f]/10 bg-white p-5 shadow-soft transition hover:-translate-y-1">
-              <img src={image} alt={`Отзыв клиента ${index + 1}`} loading="lazy" className="mx-auto h-36 w-full object-contain" />
+            <a
+              href={image}
+              target="_blank"
+              rel="noreferrer"
+              className="block h-full overflow-hidden rounded-[32px] border border-[#14251f]/10 bg-white p-3 shadow-soft transition hover:-translate-y-1"
+            >
+              <img
+                src={image}
+                alt={`Отзыв клиента ${index + 1}`}
+                loading="lazy"
+                className="w-full rounded-[24px] bg-[#f7faf8] object-contain"
+              />
             </a>
           </Reveal>
         ))}
@@ -661,6 +675,10 @@ function Footer() {
         </a>
         <a href={contacts.telegram} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition hover:text-[#2f5d50]">
           Telegram
+          <ExternalLink className="h-4 w-4" />
+        </a>
+        <a href={contacts.whatsapp} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition hover:text-[#2f5d50]">
+          WhatsApp
           <ExternalLink className="h-4 w-4" />
         </a>
       </div>
