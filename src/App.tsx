@@ -649,6 +649,14 @@ function ContactsSection() {
               <Send className="h-4 w-4" />
               Telegram
             </ContactButton>
+            <ContactButton href={contacts.vk} variant="light">
+              <ExternalLink className="h-4 w-4" />
+              VK
+            </ContactButton>
+            <ContactButton href={contacts.instagram} variant="light">
+              <ExternalLink className="h-4 w-4" />
+              Instagram
+            </ContactButton>
           </div>
         </div>
         <div className="grid min-h-[440px] grid-cols-2 gap-3 p-3">
