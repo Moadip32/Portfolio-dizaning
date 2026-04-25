@@ -15,7 +15,7 @@ import {
   Sofa,
   Sparkles,
 } from 'lucide-react';
-import { ReactNode, useEffect, useState } from 'react';
+import { MouseEvent, ReactNode, useEffect, useState } from 'react';
 import { useInViewAnimation } from './hooks/useInViewAnimation';
 
 const contacts = {
@@ -271,11 +271,17 @@ function ContactButton({
       ? 'bg-[#173f35] text-white shadow-olive hover:bg-[#102d26]'
       : 'bg-white text-[#173f35] shadow-soft hover:bg-[#f7faf8]';
 
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (href.startsWith('http')) {
+      event.preventDefault();
+      window.location.assign(href);
+    }
+  };
+
   return (
     <a
       href={href}
-      target={href.startsWith('http') ? '_blank' : undefined}
-      rel={href.startsWith('http') ? 'noreferrer' : undefined}
+      onClick={handleClick}
       className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-300 hover:-translate-y-0.5 ${classes}`}
     >
       {children}
@@ -673,19 +679,19 @@ function Footer() {
     <footer className="mx-auto flex max-w-7xl flex-col gap-8 px-6 pb-10 pt-4 text-[#14251f] md:flex-row md:items-center md:justify-between">
       <p className="text-sm">Студия дизайна интерьера</p>
       <div className="flex flex-wrap gap-4 text-sm">
-        <a href={contacts.instagram} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition hover:text-[#2f5d50]">
+        <a href={contacts.instagram} className="inline-flex items-center gap-2 transition hover:text-[#2f5d50]">
           Instagram
           <ExternalLink className="h-4 w-4" />
         </a>
-        <a href={contacts.vk} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition hover:text-[#2f5d50]">
+        <a href={contacts.vk} className="inline-flex items-center gap-2 transition hover:text-[#2f5d50]">
           VK
           <ExternalLink className="h-4 w-4" />
         </a>
-        <a href={contacts.telegram} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition hover:text-[#2f5d50]">
+        <a href={contacts.telegram} className="inline-flex items-center gap-2 transition hover:text-[#2f5d50]">
           Telegram
           <ExternalLink className="h-4 w-4" />
         </a>
-        <a href={contacts.whatsapp} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition hover:text-[#2f5d50]">
+        <a href={contacts.whatsapp} className="inline-flex items-center gap-2 transition hover:text-[#2f5d50]">
           WhatsApp
           <ExternalLink className="h-4 w-4" />
         </a>
